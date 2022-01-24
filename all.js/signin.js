@@ -18,7 +18,7 @@ const app = Vue.createApp({
 					console.log(response, '六角')
 					const { token, expired } = response.data
 					document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
-					window.location = 'admin.html'
+					window.location = 'products.html'
 					this.loading = false
 				})
 				.catch(() => {
