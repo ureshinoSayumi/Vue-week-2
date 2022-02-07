@@ -10,12 +10,13 @@ const app = Vue.createApp({
 		}
 	},
 	methods: {
+		
     signin() {
+			if (!this.user.username && !this.user.password) return 
 			this.loading = true
       const url = 'https://vue3-course-api.hexschool.io/v2'
 			axios.post(`${url}/admin/signin`, this.user)
 				.then((response) => {
-					console.log(response, '六角')
 					const { token, expired } = response.data
 					document.cookie = `hexToken=${token};expires=${new Date(expired)}; path=/`;
 					window.location = 'products.html'
@@ -23,6 +24,10 @@ const app = Vue.createApp({
 				})
 				.catch(() => {
 					alert('登入失敗')
+					this.user = {
+						username: '',
+						password: '',
+					}
 					this.loading = false
 				})
     }

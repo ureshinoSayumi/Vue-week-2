@@ -47,7 +47,7 @@
               <td class="text-end">{{ product.origin_price }}</td>
               <td class="text-end">{{ product.price }}</td>
               <td>
-                <span v-if="product.is_enabled == 1" class="text-success">啟用</span>
+                <span v-if="product.is_enabled" class="text-success">啟用</span>
                 <span v-else>未啟用</span>
               </td>
               <td>
@@ -205,7 +205,7 @@
               <button type="button" class="btn-close" aria-label="Close" @click="hideModel"></button>
             </div>
             <div class="modal-body">
-              是否刪除
+              是否刪除 {{ this.product.title }}
               <strong class="text-danger"></strong> 商品(刪除後將無法恢復)。
             </div>
             <div class="modal-footer">
@@ -235,7 +235,7 @@
             integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
             crossorigin="anonymous"></script>
 		<script src="https://unpkg.com/vue@next"></script>
-		<script src="./all.js/products.js"></script>
+		<script src="./alljs/products.js"></script>
   </body>
 
 </html>

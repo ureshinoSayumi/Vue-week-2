@@ -3,15 +3,6 @@ const app = Vue.createApp({
 		return {
 			products: [],
 			product: {
-				"title": null,
-				"category": null,
-				"origin_price": null,
-				"price": null,
-				"unit": null,
-				"description": null,
-				"content": null,
-				"is_enabled": null,
-				"imageUrl": null,
 				"imagesUrl": [],
 			},
 			
@@ -40,15 +31,6 @@ const app = Vue.createApp({
 				this.modalTitle = '新增產品'
 				this.isEditing = false
 				this.product = {
-					"title": null,
-					"category": null,
-					"origin_price": null,
-					"price": null,
-					"unit": null,
-					"description": null,
-					"content": null,
-					"is_enabled": null,
-					"imageUrl": null,
 					"imagesUrl": [],
 				}
 			}
@@ -67,6 +49,7 @@ const app = Vue.createApp({
 			console.log(this.user)
 			axios.get(`${url}/api/ciye-project/admin/products`)
 			.then((response) => {
+				console.log(response, 'asd')
 				this.products = response.data.products
 				this.loading = false
 			})
@@ -93,6 +76,9 @@ const app = Vue.createApp({
 				this.getProducts()
 			})
 			.catch((err) => {
+				alert('上傳失敗')
+				this.hideModel()
+				this.loading = false
 				console.log(err)
 			})
 		},
