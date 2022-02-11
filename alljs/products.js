@@ -57,7 +57,7 @@ const app = createApp({
 			const url = 'https://vue3-course-api.hexschool.io/v2'
 			axios.get(`${url}/api/ciye-project/admin/products?page=${page}`)
 			.then((response) => {
-				console.log(response,'getProducts')
+				// console.log(response,'getProducts')
 				this.products = response.data.products
 				this.pagination = response.data.pagination
 				this.loading = false
@@ -68,7 +68,7 @@ const app = createApp({
 		uploadProduct() {
 			this.loading = true
 			const url = 'https://vue3-course-api.hexschool.io/v2'
-			console.log(this.product, 'this.product')
+			// console.log(this.product, 'this.product')
 			// post 資料如果傳送沒有值的陣列，取回來的資料就就不會有"imagesUrl"這個屬性，造成編譯錯誤
 			if (this.product.imagesUrl.length == 0) {
 				this.product.imagesUrl = ['']
