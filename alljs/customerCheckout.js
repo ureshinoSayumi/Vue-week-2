@@ -49,7 +49,6 @@ const app = Vue.createApp({
 			this.loading = true
 			axios.get(`${this.url}/api/ciye-project/products/all`)
 				.then((response) => {
-					// console.log(response, 'getAllProducts')
 					this.allProducts = response.data.products
 					this.loading = false
 				})
@@ -62,7 +61,6 @@ const app = Vue.createApp({
 				.then((response) => {
 					
 					this.productCarts = response.data.data
-					// console.log(this.productCarts, 'getCart')
 					this.loading = false
 				})
 				.catch(() => {
@@ -78,11 +76,8 @@ const app = Vue.createApp({
 					"qty": product.qty
 				}
 			}
-			console.log(data)
 			axios.put(`${this.url}/api/ciye-project/cart/${product.id}`, data)
 				.then((response) => {
-					// this.productCarts = response.data.data
-					// console.log(response, 'editCart')
 					this.loading = false
 					this.loadInput = null
 					alert('更新完成')
@@ -96,7 +91,6 @@ const app = Vue.createApp({
 			this.loading = true
 			axios.delete(`${this.url}/api/ciye-project/cart/${productId}`)
 			.then((response) => {
-				// console.log(response, 'delteteCart')
 				this.loading = false
 				this.getCart()
 			})
@@ -107,12 +101,10 @@ const app = Vue.createApp({
 		deleteAllCart() {
 			axios.delete(`${this.url}/api/ciye-project/carts`)
 			.then((response) => {
-				// console.log(response, 'deleteAllCart')
 				alert('刪除完成')
 				this.getCart()
 			})
 			.catch((error) => {
-				// console.log(error)
 			})
 		},
 		inputCart(productId, qty=1) {
@@ -123,11 +115,8 @@ const app = Vue.createApp({
 					"qty": qty
 				}
 			}
-			console.log(data, 'data')
 			axios.post(`${this.url}/api/ciye-project/cart`, data)
 				.then((response) => {
-					// console.log(response, 'inputCart')
-					// this.allProducts = response.data.products
 					this.loading = false
 					this.productModal.hide()
 					this.getCart()
@@ -157,8 +146,6 @@ const app = Vue.createApp({
 			this.loading = true
 			axios.post(`${this.url}/api/ciye-project/order`, data)
 				.then((response) => {
-					// console.log(response, 'orderPost')
-					// this.allProducts = response.data.products
 					this.productCarts = {}
 					this.loading = false
 					this.user = {
@@ -179,8 +166,6 @@ const app = Vue.createApp({
 		getOrderData() {
 			axios.get(`${this.url}/api/ciye-project/orders`)
 				.then((response) => {
-					// console.log(response, 'getOederData')
-					// this.allProducts = response.data.products
 					this.loading = false
 				})
 				.catch(() => {
