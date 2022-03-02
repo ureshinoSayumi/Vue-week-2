@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div class="nums">
+      <p v-for="(item, index) in arr" :key="index" class="num" :style="item.style">
+        {{ item.num }}
+      </p>
+    </div>
+    <div @click="sort">sort</div>
+    <div @click="aa">sort</div>
+  </div>
+	<!-- <div class="title">
+		<div class="title-b">Bubble</div>
+		<div class="title-s">Sort</div>
+	</div>
+	<div class="holder">
+		<div id="array"></div>
+		<br>
+		<button onClick="Swipe()">One Sort</button>
+	</div> -->
+</body>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+const app = Vue.createApp({
+	data() {
+		return {
+			arr: [],
+			sorted: false
+		}
+	},
+	methods: {
+    aa() {
+      console.log('as')
+    },
+    async sort() {
+      // for (let l = 1; l <= 10; l++) {
+      //   for (let i = 1; i <= 10; i++) {
+      //     await new Promise((resolve, reject) => {//進入等待
+      //       setTimeout(function () {
+      //         resolve();//繼續往下執行
+      //       }, 300);
+      //     })
+      //     console.log(i + '-' + l + '秒過去了');
+      //   }
+      // }
+      // console.log('全都結束了');
+      function asyncFu(callBack) {
+        return new Promise((resolve, reject) => {//進入等待
+          setTimeout(function () {
+            console.log('s')
+            resolve();//繼續往下執行
+          }, 300);
+        })
+      }
+      
+      if (this.sorted) {
+        for (let i = 0; i <= this.arr.length-2; i++) {
+          for (let j = this.arr.length-1; j >= i+1; j--) {
+            await asyncFu()
+            if (this.arr[j].num < this.arr[j-1].num) {
+              let temp = this.arr[j]
+              this.arr[j] = this.arr[j-1]
+              this.arr[j-1] = temp
+            }
+          }
+        }
+        console.log(this.arr)
+        this.sorted = false
+      } else {
+        for (let i = 0; i <= this.arr.length-2; i++) {
+          for (let j = this.arr.length-1; j >= i+1; j--) {
+            await asyncFu()
+            // this.arr[j].style = 'color: red; font-size: 10px;'
+            if (this.arr[j].num > this.arr[j-1].num) {
+              let temp = this.arr[j]
+              this.arr[j] = this.arr[j-1]
+              this.arr[j-1] = temp
+              
+            }
+          }
+        }
+        console.log(this.arr)
+        this.sorted = true
+      }
+      
+
+    }
+  },
+	mounted() {
+		console.log(this.sorted, 'loading')
+    for(let i=0; i<10; i++) {
+      this.arr.push({
+        'num': Math.floor(Math.random()*100),
+        'style': ''
+      })
+    }
+    // this.sort()
+	}
+})
+app.mount('#app')
+</script>
+<style>
+.nums {
+  display: flex;
+}
+.num {
+  padding: 10px;
+}
+</style>
+</html>
